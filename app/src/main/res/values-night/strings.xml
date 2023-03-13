@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sign_in">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or">OR</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up</string>
+    <string name="welcome">Welcome</string>
+    <string name="profile">Profile</string>
+    <string name="chat">Chat</string>
+</resources>

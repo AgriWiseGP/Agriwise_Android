@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name" translatable="false">AgriWise</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    //Headings
+    <string name="heading_one">Safety of my crop</string>
+    <string name="heading_two">Crops we recommend</string>
+    <string name="heading_three">Soil suitability for cultivation</string>
+    <string name="heading_fourth">Product future</string>
+    <string name="heading_fifth">Soil classification</string>
+
+    //Description
+    <string name="desc_one">Enter a picture of your crop to help you identify the type of disease and suggest a treatment for it</string>
+    <string name="desc_two">We suggest some crops that suit you by getting to know your place, type of soil and the temperature of the atmosphere around you</string>
+    <string name="desc_three">We help you judge whether the soil is suitable for cultivation or not by analyzing it</string>
+    <string name="desc_fourth">We display information about your cultivated crop, common diseases and ways to treat them</string>
+    <string name="desc_fifth">Insert a picture of your soil to help you identify its type and suggest suitable crops</string>
+    <string name="sign_in">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or">OR</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="active" translatable="false">Active</string>
+    <string name="normal" translatable="false">Normal</string>
+    <string name="error" translatable="false">Error</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up</string>
+    <string name="welcome">Welcome!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">Profile</string>
+    <string name="chat">Chat</string>
+
+
+</resources>
