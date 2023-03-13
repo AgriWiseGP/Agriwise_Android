@@ -30,5 +30,18 @@
     <string name="welcome">Welcome</string>
     <string name="profile">Profile</string>
     <string name="chat">Chat</string>
+    <string name="recommending_crops">نقوم باقتراح بعض المحاصيل اللى تناسبك من خلال التعرف على مكانك ونوع التربة ودرجة حرارة الجو المحيطة بك</string>
+    <string name="crops_we_recommend">محاصيل نوصي بها</string>
+    <string name="my_crop_safety">سلامة محصولى</string>
+    <string name="my_crop_future">مستقبل محصولي</string>
+    <string name="Soil_suitability_for_cultivation">صلاحية التربة للزراعة</string>
+    <string name="crop_safety_content">قم بادخال صورة محصولك لمساعدتك فى التعرف على نوع المرض واقتراح علاج له</string>
+    <string name="crop_future_content">نقم بعرض معلومات عن محصولك المزروع والأمراض المنتشرة وطرق علاجها</string>
+    <string name="soil_suitability_content">نساعدك فى الحكم على التربة اذا كانت صالحة للزراعة أم لا من خلال تحليلها</string>
+    <string name="soil_classification">تصنيف التربة</string>
+    <string name="nearest_plantation">أقرب مشتل</string>
+    <string name="purchase_of_fertilizers_and_treatment">شراء الأسمدة والعلاج</string>
+    <string name="nearest_laboratory">أقرب معمل تحاليل</string>
+    <string name="consultation_request">طلب الاستشارة</string>
 
 </resources>

@@ -34,6 +34,19 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Profile</string>
     <string name="chat">Chat</string>
+    <string name="recommending_crops">We suggest some crops that suit you by identifying your location, soil type, and air temperature around you</string>
+    <string name="crops_we_recommend">Crops we Recommend</string>
+    <string name="my_crop_safety">My crop safety</string>
+    <string name="my_crop_future">My crop future</string>
+    <string name="Soil_suitability_for_cultivation">Soil suitability for cultivation</string>
+    <string name="crop_safety_content">Enter a picture of your crop to help you identify the type of disease and suggest a treatment for it</string>
+    <string name="crop_future_content">We display information about your cultivated crop, common diseases and methods of treatment</string>
+    <string name="soil_suitability_content">We help you judge whether the soil is suitable for cultivation or not by analyzing it</string>
+    <string name="soil_classification">Soil classification</string>
+    <string name="nearest_plantation">Nearest Plantation</string>
+    <string name="purchase_of_fertilizers_and_treatment">Purchase of fertilizers and treatment</string>
+    <string name="nearest_laboratory">Nearest Laboratory</string>
+    <string name="consultation_request">Consultation request</string>
 
 
 </resources>
