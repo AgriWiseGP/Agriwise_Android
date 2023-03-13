@@ -43,5 +43,9 @@
     <string name="purchase_of_fertilizers_and_treatment">شراء الأسمدة والعلاج</string>
     <string name="nearest_laboratory">أقرب معمل تحاليل</string>
     <string name="consultation_request">طلب الاستشارة</string>
+    <string name="soil_classification_content">قم بادخال صورة لتربتك لمساعدتك فى التعرف على نوعها واقتراح محاصيل مناسبة</string>
+    <string name="nearest_planting">"نقوم باقتراح أقرب مشتل لموقعك لسهولة شراء نباتك الخاص بك "</string>
+    <string name="nearest_laboratory_content">نقوم باقتراح أقرب معمل تحاليل لموقعك لسولة عمل تحاليل لتربتك</string>
+    <string name="buy_medicine_content">نقوم باقتراح أقرب مكان لشراء السماد والعلاج لمحصولك</string>
 
 </resources>

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,7 @@ import com.example.agriwise.R
 import com.example.agriwise.data.model.FeaturesData
 import java.util.*
 
-class FeaturesAdapter :
+class FeaturesAdapter(private val onClickCallBack: (Int)->Unit) :
     ListAdapter<FeaturesData, FeaturesAdapter.ViewHolder>(FeaturesDataDiffCallback()) {
 
 
@@ -24,6 +25,9 @@ class FeaturesAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder. itemView.findViewById<CardView>(R.id.card_view).setOnClickListener {
+            onClickCallBack(position)
+        }
 
     }
 
@@ -37,6 +41,10 @@ class FeaturesAdapter :
             img.setImageResource(item.img)
             name.text=item.name
             description.text = item.description
+            itemView.findViewById<CardView>(R.id.card_view).setOnClickListener {
+
+            }
+
 
 
         }
