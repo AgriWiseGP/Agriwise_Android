@@ -42,6 +42,7 @@ private var _binding: FragmentHomeBinding? = null
             FeaturesData(R.drawable.laboratory__1_,getString(R.string.nearest_laboratory),getString(R.string.recommending_crops)),
             FeaturesData(R.drawable.fertilizer__3_,getString(R.string.purchase_of_fertilizers_and_treatment),getString(R.string.recommending_crops))
 
+        
             ))
       adapter.notifyDataSetChanged()
     return root
