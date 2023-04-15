@@ -1,35 +1,40 @@
 package com.example.agriwise.ui.activity
 
-import android.app.DatePickerDialog
 import android.content.ContentValues.TAG
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
-import android.util.Patterns
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.lifecycle.ViewModelProvider
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.options
-import com.example.agriwise.R
+import com.example.agriwise.data.model.SoilAnalysis
+import com.example.agriwise.data.model.SoilFertilizerData
+import com.example.agriwise.data.model.WeatherConditions
 import com.example.agriwise.databinding.ActivityRecommendedCropsBinding
-import com.example.agriwise.databinding.ActivitySignInBinding
 import com.example.agriwise.databinding.BottomSheetImageBinding
+import com.example.agriwise.ui.viewmodel.SoilFertilizerViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.io.File
-import java.text.DecimalFormat
 import java.util.*
 
-class RecommendedCropsActivity : AppCompatActivity(), View.OnClickListener {
+class CropSafetyActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var binding : ActivityRecommendedCropsBinding
     private lateinit var bottomSheetImageBinding: BottomSheetImageBinding
     lateinit var bottomSheetImageDialog: BottomSheetDialog
     var imageuri: Uri? = null
+
+
+
+    private val viewModel: SoilFertilizerViewModel by lazy {
+        ViewModelProvider(this).get(SoilFertilizerViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecommendedCropsBinding.inflate(layoutInflater)
@@ -37,6 +42,12 @@ class RecommendedCropsActivity : AppCompatActivity(), View.OnClickListener {
         binding.cropSafety = this
         initBottomSheet()
        binding.backBtn.setOnClickListener { onBackPressed() }
+
+        viewModel.soilFertilizer.observe(this) {
+           // response here
+            Toast.makeText(this, "Response ${it.target}", Toast.LENGTH_SHORT).show()
+        }
+
     }
     private fun initBottomSheet() {
         bottomSheetImageBinding = BottomSheetImageBinding.inflate(layoutInflater)
@@ -79,6 +90,10 @@ class RecommendedCropsActivity : AppCompatActivity(), View.OnClickListener {
 
 
             binding.selectImageButton -> {
+                viewModel.getSoilFertilizer(SoilFertilizerData(cropName = "Coconut", soilName = "laterite",
+                soilAnalysis = SoilAnalysis(Pratio = 4.0, Kratio = 2.1, Nratio = 2.0, PH = 6.98),
+                    weatherConditions = WeatherConditions(temperature = 24.01, humidity = 82.06, rainfall = 185.28)
+                ))
                 bottomSheetImageDialog.show()
             }
             bottomSheetImageBinding.openCameraButton -> {

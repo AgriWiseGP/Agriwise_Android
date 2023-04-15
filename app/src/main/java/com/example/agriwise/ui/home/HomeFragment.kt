@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.agriwise.R
 import com.example.agriwise.data.model.FeaturesData
 import com.example.agriwise.databinding.FragmentHomeBinding
-import com.example.agriwise.ui.activity.RecommendedCropsActivity
+import com.example.agriwise.ui.activity.CropRecommendationActivity
+import com.example.agriwise.ui.activity.CropSafetyActivity
+import com.example.agriwise.ui.activity.GetWeatherActivity
 import com.example.agriwise.ui.adapter.FeaturesAdapter
 
 class HomeFragment : Fragment() {
@@ -34,9 +35,12 @@ private var _binding: FragmentHomeBinding? = null
     _binding = FragmentHomeBinding.inflate(inflater, container, false)
     val root: View = binding.root
       val adapter = FeaturesAdapter {
-        if (it==0){
-            startActivity(Intent(requireActivity(),RecommendedCropsActivity::class.java))
-        }
+          when(it){
+              0-> startActivity(Intent(requireActivity(),CropSafetyActivity::class.java))
+              1-> startActivity(Intent(requireActivity(),CropRecommendationActivity::class.java))
+              2-> startActivity(Intent(requireActivity(),GetWeatherActivity::class.java))
+          }
+
       }
       binding.homeRV.adapter = adapter
         adapter.submitList(listOf(FeaturesData(R.drawable.camera__1_,getString(R.string.my_crop_safety),getString(R.string.crop_safety_content)),

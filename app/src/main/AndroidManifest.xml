@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.agriwise">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
@@ -10,11 +11,11 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission
         android:name="android.permission.ACCESS_FINE_LOCATION"
         tools:ignore="CoarseFineLocation" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,7 +27,21 @@
         android:theme="@style/Theme.Onboarding"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.RecommendedCropsActivity"
+            android:name=".ui.activity.GetWeatherActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activity.CropRecommendationActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activity.CropSafetyActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -65,7 +80,6 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.AgriWise" />
 
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.agriwise.fileprovider"
@@ -75,7 +89,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

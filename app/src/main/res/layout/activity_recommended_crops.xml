@@ -6,7 +6,7 @@
     <data>
         <variable
             name="cropSafety"
-            type="com.example.agriwise.ui.activity.RecommendedCropsActivity" />
+            type="com.example.agriwise.ui.activity.CropSafetyActivity" />
 
     </data>
 
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
-        tools:context=".ui.activity.RecommendedCropsActivity">
+        tools:context=".ui.activity.CropSafetyActivity">
 
         <ImageView
             android:id="@+id/top_bar"
