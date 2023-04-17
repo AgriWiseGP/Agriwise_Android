@@ -14,6 +14,7 @@ import com.example.agriwise.databinding.FragmentHomeBinding
 import com.example.agriwise.ui.activity.CropRecommendationActivity
 import com.example.agriwise.ui.activity.CropSafetyActivity
 import com.example.agriwise.ui.activity.GetWeatherActivity
+import com.example.agriwise.ui.activity.SoilFertilizerActivity
 import com.example.agriwise.ui.adapter.FeaturesAdapter
 
 class HomeFragment : Fragment() {
@@ -38,13 +39,15 @@ private var _binding: FragmentHomeBinding? = null
           when(it){
               0-> startActivity(Intent(requireActivity(),CropSafetyActivity::class.java))
               1-> startActivity(Intent(requireActivity(),CropRecommendationActivity::class.java))
-              2-> startActivity(Intent(requireActivity(),GetWeatherActivity::class.java))
+              2-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java))
           }
 
       }
       binding.homeRV.adapter = adapter
         adapter.submitList(listOf(FeaturesData(R.drawable.camera__1_,getString(R.string.my_crop_safety),getString(R.string.crop_safety_content)),
             FeaturesData(R.drawable.sapling__3_,getString(R.string.crops_we_recommend),getString(R.string.recommending_crops)),
+            FeaturesData(R.drawable.fertilizer__4_,getString(R.string.soil_fertilizer),getString(R.string.soil_fertilizer_content)),
+
             FeaturesData(R.drawable.plant__1_,getString(R.string.Soil_suitability_for_cultivation),getString(R.string.soil_suitability_content)),
             FeaturesData(R.drawable.pest__1_,getString(R.string.my_crop_future),getString(R.string.crop_future_content)),
             FeaturesData(R.drawable.camera__1_,getString(R.string.soil_classification),getString(R.string.soil_classification_content)),

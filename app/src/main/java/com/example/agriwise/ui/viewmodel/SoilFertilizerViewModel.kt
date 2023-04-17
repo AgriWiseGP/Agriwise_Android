@@ -1,12 +1,15 @@
 package com.example.agriwise.ui.viewmodel
 
 
+import android.app.AlertDialog
 import android.util.Log
+import android.widget.LinearLayout
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.agriwise.data.model.CropRecommendationData
+import com.example.agriwise.data.model.LoginResponse
 import com.example.agriwise.data.model.SoilFertilizerData
 import com.example.agriwise.data.model.SoilFertilizerResponse
 import com.example.agriwise.data.network.service
@@ -20,8 +23,9 @@ import retrofit2.Response
 
 class SoilFertilizerViewModel : ViewModel() {
 
-    private val _cropRecommendation = MutableLiveData<CropRecommendationResponse>()
-    val cropRecommendation: LiveData<CropRecommendationResponse>
+
+    private val _cropRecommendation = MutableLiveData<CropRecommendationResponse?>()
+    val cropRecommendation: LiveData<CropRecommendationResponse?>
         get() = _cropRecommendation
 
 
@@ -33,6 +37,9 @@ class SoilFertilizerViewModel : ViewModel() {
 
     }
 
+
+
+
     fun getCropRecommendation(cropRecommendationData: CropRecommendationData) {
         viewModelScope.launch {
             service.cropRecommendation(cropRecommendationData).enqueue(object : Callback<CropRecommendationResponse> {
@@ -40,7 +47,12 @@ class SoilFertilizerViewModel : ViewModel() {
                     call: Call<CropRecommendationResponse>,
                     response: Response<CropRecommendationResponse>,
                 ) {
-                    _cropRecommendation.value = response.body()
+                    if (response.isSuccessful){
+                        _cropRecommendation.value = response.body()
+                    }else if (response.code() == 404) {
+                        // handle 404 error
+                        _cropRecommendation.value = null
+                    }
                 }
 
                 override fun onFailure(call: Call<CropRecommendationResponse>, t: Throwable) {
@@ -59,7 +71,10 @@ class SoilFertilizerViewModel : ViewModel() {
                     call: Call<SoilFertilizerResponse>,
                     response: Response<SoilFertilizerResponse>,
                 ) {
-                    _soilFertilizer.value = response.body()
+                    if (response.isSuccessful){
+                        _soilFertilizer.value = response.body()
+                    }
+
                 }
 
                 override fun onFailure(call: Call<SoilFertilizerResponse>, t: Throwable) {

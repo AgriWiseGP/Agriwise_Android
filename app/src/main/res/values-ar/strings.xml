@@ -32,6 +32,9 @@
     <string name="chat">Chat</string>
     <string name="recommending_crops">نقوم باقتراح بعض المحاصيل اللى تناسبك من خلال التعرف على مكانك ونوع التربة ودرجة حرارة الجو المحيطة بك</string>
     <string name="crops_we_recommend">محاصيل نوصي بها</string>
+    <string name="soil_fertilizer">Soil fertilizer</string>
+    <string name="soil_fertilizer_content">We detect your crop and suggest appropriate fertilizers by identifying your location …</string>
+
     <string name="my_crop_safety">سلامة محصولى</string>
     <string name="my_crop_future">مستقبل محصولي</string>
     <string name="Soil_suitability_for_cultivation">صلاحية التربة للزراعة</string>
@@ -47,5 +50,8 @@
     <string name="nearest_planting">"نقوم باقتراح أقرب مشتل لموقعك لسهولة شراء نباتك الخاص بك "</string>
     <string name="nearest_laboratory_content">نقوم باقتراح أقرب معمل تحاليل لموقعك لسولة عمل تحاليل لتربتك</string>
     <string name="buy_medicine_content">نقوم باقتراح أقرب مكان لشراء السماد والعلاج لمحصولك</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="have_an_account_login">Have an account ? Login</string>
+    <string name="username">Username</string>
 
 </resources>

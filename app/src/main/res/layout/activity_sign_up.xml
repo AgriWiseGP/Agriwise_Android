@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="emailStatus"
+            type="String" />
+        <variable
+            name="passwordStatus"
+            type="String" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.activity.SignUpActivity">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="57dp"
+            android:src="@drawable/mobile_login_amico"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginTop="34dp"
+            android:text="@string/sign_up"
+            android:textColor="@color/purple_200"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/backbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:layoutDirection="ltr"
+            android:text="@string/back"
+            android:textColor="@color/active"
+            android:textSize="@dimen/_12sdp"
+            app:drawableStartCompat="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+
+            android:id="@+id/pass_edit_text"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="24dp"
+            android:background="@{passwordStatus == @string/active ? @drawable/field_active_background : passwordStatus == @string/error ? @drawable/field_error_background : @drawable/edit_text}"
+            android:drawableStart="@drawable/lock_fill0_wght400_grad0_opsz48"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/password"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColorHint="@color/hint"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+            tools:background="@drawable/edit_text" />
+
+
+        <EditText
+
+            android:id="@+id/confirmPass_edit_text"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="24dp"
+            android:background="@{passwordStatus == @string/active ? @drawable/field_active_background : passwordStatus == @string/error ? @drawable/field_error_background : @drawable/edit_text}"
+            android:drawableStart="@drawable/lock_fill0_wght400_grad0_opsz48"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/confirm_password"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColorHint="@color/hint"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pass_edit_text"
+            tools:background="@drawable/edit_text" />
+
+
+
+
+
+        <EditText
+            android:id="@+id/email_edit_text"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="24dp"
+            android:background="@{emailStatus == @string/active ? @drawable/field_active_background : emailStatus == @string/error ? @drawable/field_error_background : @drawable/edit_text}"
+            android:drawableStart="@drawable/mail_fill0_wght400_grad0_opsz48"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColorHint="@color/hint"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_edit_text"
+            tools:background="@drawable/edit_text" />
+
+
+
+        <EditText
+            android:id="@+id/username_edit_text"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="97dp"
+            android:background="@{emailStatus == @string/active ? @drawable/field_active_background : emailStatus == @string/error ? @drawable/field_error_background : @drawable/edit_text}"
+            android:drawableStart="@drawable/person_filled_fill0_wght400_grad0_opsz48"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/username"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColorHint="@color/hint"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:background="@drawable/edit_text" />
+
+
+
+
+
+
+        <Button
+            android:id="@+id/sign_up_btn"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="23dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/arial"
+            android:text="@string/sign_up"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintTop_toBottomOf="@id/confirmPass_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="12dp"
+             />
+
+        <TextView
+            android:id="@+id/sign_in_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_btn"
+            tools:text="@string/have_an_account_login" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

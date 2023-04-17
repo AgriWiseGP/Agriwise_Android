@@ -27,6 +27,20 @@
         android:theme="@style/Theme.Onboarding"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.SoilFertilizerActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activity.SignUpActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.activity.GetWeatherActivity"
             android:exported="false">
             <meta-data

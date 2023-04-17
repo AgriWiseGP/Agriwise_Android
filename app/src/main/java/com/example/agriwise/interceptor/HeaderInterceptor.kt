@@ -1,18 +1,23 @@
 package com.example.banquemisr.interceptor
 
 import android.annotation.SuppressLint
+import com.example.agriwise.ui.activity.SignInActivity
 import okhttp3.Interceptor
 import okhttp3.Response
 
 class HeaderInterceptor : Interceptor {
     @SuppressLint("SuspiciousIndentation")
     override fun intercept(chain: Interceptor.Chain): Response {
+        val originalRequest = chain.request()
 
-     val builder =   chain.request().newBuilder()
-         .addHeader("Authorization", "JWT " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxNDIyMjUyLCJqdGkiOiI0YjZhM2I4ZjhhZjc0NjBkOWUxN2MzMzZhMjJkNmU2NiIsInVzZXJfaWQiOjUzfQ.qMfwgCdXsWLjkhvVVkRtBb0MexHDTmDxTsyD8CcNjtA")
-      //   .addHeader("Authorization", "JWT " + "Login.accessToken")
-         .build()
+        val newRequest = if (SignInActivity.token.isNullOrEmpty()) {
+            originalRequest
+        } else {
+            originalRequest.newBuilder()
+                .addHeader("Authorization", "JWT ${SignInActivity.token}")
+                .build()
+        }
 
-        return chain.proceed(builder)
+        return chain.proceed(newRequest)
     }
 }

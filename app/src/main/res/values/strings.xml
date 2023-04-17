@@ -4,20 +4,20 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     //Headings
-    <string name="heading_one">Safety of my crop</string>
+    <string name="heading_one">Safety and future of my crop</string>
     <string name="heading_two">Crops we recommend</string>
     <string name="heading_three">Soil suitability for cultivation</string>
     <string name="heading_fourth">Product future</string>
     <string name="heading_fifth">Soil classification</string>
 
     //Description
-    <string name="desc_one">Enter a picture of your crop to help you identify the type of disease and suggest a treatment for it</string>
-    <string name="desc_two">We suggest some crops that suit you by getting to know your place, type of soil and the temperature of the atmosphere around you</string>
-    <string name="desc_three">We help you judge whether the soil is suitable for cultivation or not by analyzing it</string>
+    <string name="desc_one">Enter a picture of your crop to help you identify the type of disease, suggest a treatment for it, and suggest common diseases of your crop and treat them.</string>
+    <string name="desc_two">We suggest some crops that suit you by identifying your location, soil type, and air temperature around you</string>
+    <string name="desc_three">Enter the analysis image of your soil to help you identify its type and whether it is suitable for cultivation or not</string>
     <string name="desc_fourth">We display information about your cultivated crop, common diseases and ways to treat them</string>
     <string name="desc_fifth">Insert a picture of your soil to help you identify its type and suggest suitable crops</string>
     <string name="sign_in">Login</string>
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">Create a new account</string>
     <string name="or">OR</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
@@ -36,6 +36,8 @@
     <string name="chat">Chat</string>
     <string name="recommending_crops">We suggest some crops that suit you by identifying your location, soil type, and air temperature around you</string>
     <string name="crops_we_recommend">Crops we Recommend</string>
+    <string name="soil_fertilizer">Soil fertilizer</string>
+    <string name="soil_fertilizer_content">We detect your crop and suggest appropriate fertilizers by identifying your location …</string>
     <string name="my_crop_safety">My crop safety</string>
     <string name="my_crop_future">My crop future</string>
     <string name="Soil_suitability_for_cultivation">Soil suitability for cultivation</string>
@@ -51,6 +53,9 @@
     <string name="nearest_planting">We suggest the nearest nursery to your location for easy purchase of your own plant</string>
     <string name="nearest_laboratory_content">We suggest the nearest analysis laboratory to your location in order to conduct analyzes of your soil</string>
     <string name="buy_medicine_content">We suggest the nearest place to buy fertilizer and treatment for your crop</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="have_an_account_login">Have an account ? Login</string>
+    <string name="username">Username</string>
 
 
 </resources>

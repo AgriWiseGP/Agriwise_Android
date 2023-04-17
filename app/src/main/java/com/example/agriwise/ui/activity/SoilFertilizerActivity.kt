@@ -26,6 +26,7 @@ import com.example.agriwise.data.model.*
 import com.example.agriwise.data.network.WeatherApi
 import com.example.agriwise.databinding.ActivityCropRecommendationBinding
 import com.example.agriwise.databinding.ActivityRecommendedCropsBinding
+import com.example.agriwise.databinding.ActivitySoilFertilizerBinding
 import com.example.agriwise.databinding.BottomSheetImageBinding
 import com.example.agriwise.databinding.DialogLoadingBinding
 import com.example.agriwise.ui.BaseActivity
@@ -41,8 +42,8 @@ import java.io.File
 import java.util.*
 import kotlin.math.roundToInt
 
-class CropRecommendationActivity : BaseActivity(), View.OnClickListener, LocationListener {
-    lateinit var binding : ActivityCropRecommendationBinding
+class SoilFertilizerActivity : BaseActivity(), View.OnClickListener, LocationListener {
+    lateinit var binding : ActivitySoilFertilizerBinding
     private lateinit var bottomSheetImageBinding: BottomSheetImageBinding
     lateinit var bottomSheetImageDialog: BottomSheetDialog
     var imageuri: Uri? = null
@@ -69,9 +70,9 @@ class CropRecommendationActivity : BaseActivity(), View.OnClickListener, Locatio
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCropRecommendationBinding.inflate(layoutInflater)
+        binding = ActivitySoilFertilizerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.cropSafety = this
+        binding.soilFertilizer = this
         showLoading()
 
         val gson = GsonBuilder().create()
@@ -94,11 +95,11 @@ class CropRecommendationActivity : BaseActivity(), View.OnClickListener, Locatio
 
         binding.backBtn.setOnClickListener { onBackPressed() }
 
-        viewModel.cropRecommendation.observe(this) {
+        viewModel.soilFertilizer.observe(this) {
             // response here
             hideLoading()
-            if (it?.data !=null){
-                Toast.makeText(this, "We Recommend : ${it.data?.name}", Toast.LENGTH_LONG).show()
+            if (it !=null){
+                Toast.makeText(this, "Best Soil Fertilizer : ${it.target}", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "Something went wrong. Please try again later", Toast.LENGTH_LONG).show()
             }
@@ -139,7 +140,7 @@ class CropRecommendationActivity : BaseActivity(), View.OnClickListener, Locatio
         weatherApi.getWeatherData(latitude, longitude, GetWeatherActivity.WEATHER_API_KEY).enqueue(object :
             Callback<WeatherData> {
             override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
-               hideLoading()
+                hideLoading()
                 if (response.isSuccessful) {
 // Parse the weather data from the response
                     val weatherData = response.body()
@@ -148,17 +149,17 @@ class CropRecommendationActivity : BaseActivity(), View.OnClickListener, Locatio
                     binding.temprature.setText((weatherData?.main?.temperature?.minus(273.15)?.roundToInt()?.toDouble()).toString()  /* +"\u00B0C" */)
                     binding.humidity.setText(weatherData?.main?.humidity.toString())
 
-                  //  binding.rainfall.setText(weatherData?.rain?.rainfall.toString())
+                    //  binding.rainfall.setText(weatherData?.rain?.rainfall.toString())
                 } else {
                     // Show an error message
-                    Toast.makeText(this@CropRecommendationActivity, "${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SoilFertilizerActivity, "${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<WeatherData>, t: Throwable) {
                 // Show an error message
                 hideLoading()
-                Toast.makeText(this@CropRecommendationActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SoilFertilizerActivity, "${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -172,7 +173,7 @@ class CropRecommendationActivity : BaseActivity(), View.OnClickListener, Locatio
                 getLocation()
             } else {
                 // Permission denied, show an error message
-                Toast.makeText(this@CropRecommendationActivity, "Permission Denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SoilFertilizerActivity, "Permission Denied", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -183,9 +184,15 @@ class CropRecommendationActivity : BaseActivity(), View.OnClickListener, Locatio
 
             binding.recommendButton -> {
                 showLoading()
-                viewModel.getCropRecommendation( cropRecommendationData = CropRecommendationData(p = binding.pRatio.text.toString().toDouble(), k = binding.kRatio.text.toString().toDouble(), n = binding.nRatio.text.toString().toDouble(), ph = binding.phRatio.text.toString().toDouble(),
-                    temperature = binding.temprature.text.toString().toDouble(), humidity = binding.humidity.text.toString().toDouble(), rainfall = binding.rainfall.text.toString().toDouble()
-                ))
+                viewModel.getSoilFertilizer( soilFertilizerData = SoilFertilizerData(soilName = binding.soilType.text.toString(),
+                    cropName = binding.cropName.text.toString(),
+                    weatherConditions = WeatherConditions(temperature = binding.temprature.text.toString().toDouble(),
+                    humidity = binding.humidity.text.toString().toDouble(),
+                    rainfall = binding.rainfall.text.toString().toDouble()),
+                soilAnalysis = SoilAnalysis(Pratio = binding.pRatio.text.toString().toDouble(),
+                Kratio = binding.kRatio.text.toString().toDouble(),
+                Nratio = binding.nRatio.text.toString().toDouble() ,
+                PH = binding.phRatio.text.toString().toDouble())))
 
             }
 
