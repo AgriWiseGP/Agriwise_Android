@@ -53,5 +53,6 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="have_an_account_login">Have an account ? Login</string>
     <string name="username">Username</string>
+    <string name="password_recovery">Password Recovery</string>
 
 </resources>

@@ -33,6 +33,9 @@ class SignInActivity : BaseActivity() , View.OnFocusChangeListener {
         changeColor()
         binding.emailEditText.onFocusChangeListener = this
         binding.passEditText.onFocusChangeListener = this
+        binding.forgotPass.setOnClickListener {
+            startActivity(Intent(this,ForgotPasswordActivity::class.java))
+        }
         binding.loginBtn.setOnClickListener {
 
           //  startActivity(Intent(this,MainActivity::class.java))
