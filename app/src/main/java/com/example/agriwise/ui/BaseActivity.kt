@@ -2,11 +2,19 @@ package com.example.agriwise.ui
 
 import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.ContentValues.TAG
+import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import com.example.agriwise.databinding.DialogLoadingBinding
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 open class BaseActivity: AppCompatActivity() {
     fun showLoading() {
@@ -24,6 +32,52 @@ open class BaseActivity: AppCompatActivity() {
         loadingDialog?.dismiss()
         loadingDialog = null
     }
+
+    fun getMultipartForFile(uri: Uri): MultipartBody.Part {
+        Log.e(TAG, "onClick: $uri")
+       // val mimeType = uri.getMimeType()
+       // Log.e(TAG, "onClick: $mimeType")
+        Log.e(TAG, "onClick: ${getDisplayName(uri).toString()}")
+        val file = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+            File(
+                cacheDir, getDisplayName(uri).toString()
+            )
+        } else {
+            File(uri.path.toString())
+        }
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+            contentResolver.openInputStream(uri).use { `in` ->
+                file.outputStream().use {
+                    `in`?.copyTo(it)
+                }
+            }
+        }
+        Log.e(TAG, "onClick: ${file.length()}")
+        val requestBody = file.asRequestBody(
+            "multipart/form-data".toMediaTypeOrNull()
+        )
+        return MultipartBody.Part.createFormData("image", getDisplayName(uri), requestBody)
+    }
+
+    fun getDisplayName(uri: Uri): String? {
+        val projection = arrayOf(MediaStore.Images.Media.DISPLAY_NAME)
+        contentResolver.query(uri, projection, null, null, null).use { cursor ->
+            if (cursor != null) {
+                val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
+                if (cursor.moveToFirst()) {
+                    return cursor.getString(columnIndex)
+                }
+            }
+        }
+        Log.w(
+            "BaseActivity",
+            "Couldnt determine DISPLAY_NAME for Uri.  Falling back to Uri path: " + uri.path
+        )
+
+        return uri.path.toString()
+            .substring(uri.path.toString().lastIndexOf('/') + 1, uri.path.toString().length)
+    }
+
     private var loadingDialog: AlertDialog? = null
 
     private fun createLoadingDialog(): AlertDialog {

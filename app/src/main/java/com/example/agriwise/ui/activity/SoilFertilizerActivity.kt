@@ -99,7 +99,19 @@ class SoilFertilizerActivity : BaseActivity(), View.OnClickListener, LocationLis
             // response here
             hideLoading()
             if (it !=null){
-                Toast.makeText(this, "Best Soil Fertilizer : ${it.target}", Toast.LENGTH_LONG).show()
+                val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+                builder
+                    .setTitle("Best Soil Fertilizer : ${it.target}")
+                    .setPositiveButton("Try another") { dialog, which ->
+                        dialog.dismiss()
+                        bottomSheetImageDialog.show()
+                    }
+                    .setNegativeButton("Go Back"){ dialog, which ->
+                        dialog.dismiss()
+                        finish()
+                    }
+                    .setCancelable(false)
+                    .show()
             } else {
                 Toast.makeText(this, "Something went wrong. Please try again later", Toast.LENGTH_LONG).show()
             }

@@ -11,10 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.agriwise.R
 import com.example.agriwise.data.model.FeaturesData
 import com.example.agriwise.databinding.FragmentHomeBinding
-import com.example.agriwise.ui.activity.CropRecommendationActivity
-import com.example.agriwise.ui.activity.CropSafetyActivity
-import com.example.agriwise.ui.activity.GetWeatherActivity
-import com.example.agriwise.ui.activity.SoilFertilizerActivity
+import com.example.agriwise.ui.activity.*
 import com.example.agriwise.ui.adapter.FeaturesAdapter
 
 class HomeFragment : Fragment() {
@@ -40,6 +37,9 @@ private var _binding: FragmentHomeBinding? = null
               0-> startActivity(Intent(requireActivity(),CropSafetyActivity::class.java))
               1-> startActivity(Intent(requireActivity(),CropRecommendationActivity::class.java))
               2-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java))
+              3-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java)) // soil suitability
+              4-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java)) // crop future
+              5-> startActivity(Intent(requireActivity(),SoilClassificationActivity::class.java))
           }
 
       }

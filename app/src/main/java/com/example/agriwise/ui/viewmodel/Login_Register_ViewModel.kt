@@ -66,20 +66,22 @@ class Login_Register_ViewModel : BaseViewModel() {
 
 
 
-    fun register( registerBody: RegisterBody) : LiveData<Int?> {
-        val register = MutableLiveData<Int?>()
+    fun register( registerBody: RegisterBody) : LiveData<String?> {
+        val register = MutableLiveData<String?>()
         viewModelScope.launch {
             service.register(registerBody)
                 .enqueue(object : Callback<Unit> {
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                         if (response.isSuccessful) {
-                            register.value=1
+                            register.value="1"
                         } else {
-                            register.value = 2
+                            register.value = response.errorBody()?.string()
+
+
                         }
                     }
                     override fun onFailure(call: Call<Unit>, t: Throwable) {
-                        register.value = -1
+                        register.value = "-1"
                     }
                 })
         }

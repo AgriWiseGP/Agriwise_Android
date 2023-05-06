@@ -6,7 +6,7 @@
     <data>
         <variable
             name="cropSafety"
-            type="com.example.agriwise.ui.activity.CropSafetyActivity" />
+            type="com.example.agriwise.ui.activity.SoilClassificationActivity" />
 
     </data>
 
@@ -35,7 +35,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:text="@string/my_crop_safety" />
+            android:text="@string/soil_classification" />
 
         <ImageView
             android:id="@+id/back_btn"
@@ -59,13 +59,13 @@
             android:gravity="center"
             android:paddingHorizontal="30dp"
             android:textColor="@color/white"
-            android:text="@string/crop_safety_content" />
+            android:text="@string/soil_classification_content" />
 
         <ImageView
             android:id="@+id/progress_flow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/group_159"
+            android:src="@drawable/soil_type_img"
             android:layout_marginTop="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

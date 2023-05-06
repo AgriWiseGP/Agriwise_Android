@@ -98,7 +98,19 @@ class CropRecommendationActivity : BaseActivity(), View.OnClickListener, Locatio
             // response here
             hideLoading()
             if (it?.data !=null){
-                Toast.makeText(this, "We Recommend : ${it.data?.name}", Toast.LENGTH_LONG).show()
+                val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+                builder
+                    .setTitle("We Recommend : ${it.data?.name}")
+                    .setPositiveButton("Try another") { dialog, which ->
+                        dialog.dismiss()
+                        bottomSheetImageDialog.show()
+                    }
+                    .setNegativeButton("Go Back"){ dialog, which ->
+                        dialog.dismiss()
+                        finish()
+                    }
+                    .setCancelable(false)
+                    .show()
             } else {
                 Toast.makeText(this, "Something went wrong. Please try again later", Toast.LENGTH_LONG).show()
             }

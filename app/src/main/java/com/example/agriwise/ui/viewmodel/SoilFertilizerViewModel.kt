@@ -8,15 +8,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.agriwise.data.model.CropRecommendationData
-import com.example.agriwise.data.model.LoginResponse
-import com.example.agriwise.data.model.SoilFertilizerData
-import com.example.agriwise.data.model.SoilFertilizerResponse
+import com.example.agriwise.data.model.*
 import com.example.agriwise.data.network.service
 import com.example.example.CropRecommendationResponse
 
 
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,15 +28,42 @@ class SoilFertilizerViewModel : ViewModel() {
         get() = _cropRecommendation
 
 
-    private val _soilFertilizer = MutableLiveData<SoilFertilizerResponse>()
-    val soilFertilizer: LiveData<SoilFertilizerResponse>
+    private val _soilFertilizer = MutableLiveData<SoilFertilizerResponse?>()
+    val soilFertilizer: LiveData<SoilFertilizerResponse?>
         get() = _soilFertilizer
+
+
+    private val _soilType = MutableLiveData<SoilTypeResponse?>()
+    val soilType: LiveData<SoilTypeResponse?>
+        get() = _soilType
 
     init {
 
     }
 
+    fun getSoilType(file: MultipartBody.Part) {
+        viewModelScope.launch {
+            service.soilType(Image = file ).enqueue(object : Callback<SoilTypeResponse> {
+                override fun onResponse(
+                    call: Call<SoilTypeResponse>,
+                    response: Response<SoilTypeResponse>,
+                ) {
+                    if (response.isSuccessful){
+                        _soilType.value = response.body()
+                    }else  {
+                        // handle 404 error
+                        val errorMessageJson = response.errorBody()?.string()
+                        _soilType.value = null
+                    }
+                }
 
+                override fun onFailure(call: Call<SoilTypeResponse>, t: Throwable) {
+                    Log.e("error", t.localizedMessage as String)
+                }
+            })
+        }
+
+    }
 
 
     fun getCropRecommendation(cropRecommendationData: CropRecommendationData) {
@@ -49,8 +75,10 @@ class SoilFertilizerViewModel : ViewModel() {
                 ) {
                     if (response.isSuccessful){
                         _cropRecommendation.value = response.body()
-                    }else if (response.code() == 404) {
+                    }else  {
                         // handle 404 error
+                        val errorMessageJson = response.errorBody()?.string()
+
                         _cropRecommendation.value = null
                     }
                 }
@@ -73,6 +101,8 @@ class SoilFertilizerViewModel : ViewModel() {
                 ) {
                     if (response.isSuccessful){
                         _soilFertilizer.value = response.body()
+                    } else {
+                        _soilFertilizer.value = null
                     }
 
                 }

@@ -52,12 +52,8 @@ class SignUpActivity : BaseActivity() {
 
                 val register = viewModel.register(RegisterBody(userName, email, password))
                 register.observe(this) {
-                    if (it==2) {
-                        Toast.makeText(this, "Something Went Wrong Please Try Again Later", Toast.LENGTH_SHORT).show()
-                        hideLoading()
 
-                    }
-                    else if (it==1){
+                     if (it=="1"){
                        hideLoading()
 
                         val builder = AlertDialog.Builder(this)
@@ -65,12 +61,12 @@ class SignUpActivity : BaseActivity() {
                             .setTitle("Successfully Registered")
                             .setMessage("Going To Login Page")
                             .setPositiveButton("Go") { dialog, which ->
-                                startActivity(Intent(this@SignUpActivity,MainActivity::class.java))
+                                startActivity(Intent(this@SignUpActivity,SignInActivity::class.java))
                             }
                             .setCancelable(false)
                             .show()
                     } else {
-                        Toast.makeText(this, "Connection Error", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, it, Toast.LENGTH_SHORT)
                             .show()
                         hideLoading()
                     }

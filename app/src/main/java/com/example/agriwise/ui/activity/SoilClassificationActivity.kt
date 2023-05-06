@@ -1,6 +1,7 @@
 package com.example.agriwise.ui.activity
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.canhub.cropper.CropImageContract
@@ -17,6 +19,7 @@ import com.example.agriwise.data.model.SoilAnalysis
 import com.example.agriwise.data.model.SoilFertilizerData
 import com.example.agriwise.data.model.WeatherConditions
 import com.example.agriwise.databinding.ActivityRecommendedCropsBinding
+import com.example.agriwise.databinding.ActivitySoilClassificationBinding
 import com.example.agriwise.databinding.BottomSheetImageBinding
 import com.example.agriwise.ui.BaseActivity
 import com.example.agriwise.ui.viewmodel.SoilFertilizerViewModel
@@ -24,8 +27,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.io.File
 import java.util.*
 
-class CropSafetyActivity : BaseActivity(), View.OnClickListener {
-    lateinit var binding : ActivityRecommendedCropsBinding
+class SoilClassificationActivity : BaseActivity(), View.OnClickListener {
+    lateinit var binding : ActivitySoilClassificationBinding
     private lateinit var bottomSheetImageBinding: BottomSheetImageBinding
     lateinit var bottomSheetImageDialog: BottomSheetDialog
     var imageuri: Uri? = null
@@ -39,15 +42,28 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRecommendedCropsBinding.inflate(layoutInflater)
+        binding = ActivitySoilClassificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.cropSafety = this
         initBottomSheet()
-       binding.backBtn.setOnClickListener { onBackPressed() }
+        binding.backBtn.setOnClickListener { onBackPressed() }
 
         viewModel.soilType.observe(this) {
-           // response here
-            Toast.makeText(this, "Response ${it?.soilType}", Toast.LENGTH_SHORT).show()
+            // response here
+            hideLoading()
+            val builder = AlertDialog.Builder(this)
+            builder
+                .setTitle("Soil Type is :${it?.soilType}")
+                .setPositiveButton("Try another") { dialog, which ->
+                    dialog.dismiss()
+                    bottomSheetImageDialog.show()
+                }
+                .setNegativeButton("Go Back"){ dialog, which ->
+                    dialog.dismiss()
+                    finish()
+                }
+                .setCancelable(false)
+                .show()
         }
 
     }
@@ -61,12 +77,12 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
     }
     private var takePicture = registerForActivityResult(ActivityResultContracts.TakePicture()) {
         if (it) {
-          /*  takeCropPicture.launch(
-                options(uri)
-            ) */
+            /*  takeCropPicture.launch(
+                  options(uri)
+              ) */
 
             val part = getMultipartForFile(uri!!)
-            val contentType = part.body.contentType()?.toString()
+            showLoading()
             viewModel.getSoilType( file = part)
             // send the multipartBodyPart to your server
 
@@ -76,12 +92,12 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
 
     private var getPicture = registerForActivityResult(ActivityResultContracts.GetContent()) {
         if (it != null) {
-           /* takeCropPicture.launch(
-                options(it)
-            ) */
+            /* takeCropPicture.launch(
+                 options(it)
+             ) */
             uri = it
             val part = getMultipartForFile(uri!!)
-            val contentType = part.body.contentType()?.toString()
+            showLoading()
             viewModel.getSoilType( file = part)
             // send the multipartBodyPart to your server
 
@@ -111,7 +127,7 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
                     ".jpg",
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
                 )
-                 uri = FileProvider.getUriForFile(this, "com.example.agriwise.fileprovider", file)
+                uri = FileProvider.getUriForFile(this, "com.example.agriwise.fileprovider", file)
                 takePicture.launch(uri)
                 bottomSheetImageDialog.dismiss()
             }
