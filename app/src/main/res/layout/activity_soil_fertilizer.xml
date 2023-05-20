@@ -263,7 +263,7 @@
             android:background="@drawable/button"
             android:fontFamily="@font/arial"
             android:onClick="@{soilFertilizer::onClick}"
-            android:text="Recommend"
+            android:text="Next"
             android:textAllCaps="false"
             android:textSize="@dimen/_14sdp"
             android:layout_marginBottom="24dp"
