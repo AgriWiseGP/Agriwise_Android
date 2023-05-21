@@ -106,3 +106,14 @@ Here are some screenshots from the Agriwise app:
   <br>
   Soil fertilizer model Screen
 </p>
+
+## Video
+
+
+https://github.com/AgriWiseGP/Agriwise_Android/assets/76598011/c6fcb24b-fe20-4892-9dea-6ffde7c91fe0
+
+
+
+
+
+
