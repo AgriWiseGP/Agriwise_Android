@@ -22,7 +22,7 @@ interface AgriWiseApi{
     fun cropRecommendation(@Body cropRecommendationData: CropRecommendationData) : Call<CropRecommendationResponse>
 
     @POST("soil-quality/soil/")
-    fun soilQuality(@Body soilQualityData: SoilQualityData) : Call<CropRecommendationResponse>
+    fun soilQuality(@Body soilQualityData: SoilQualityData) : Call<SoilQualityResponse>
 
 
     @POST("auth/users/")
@@ -39,7 +39,7 @@ interface AgriWiseApi{
 
     @POST("plant-diseases/predict/")
     @Multipart
-    fun plantDisease(@Part Image: MultipartBody.Part) : Call<SoilTypeResponse>
+    fun plantDisease(@Part Image: MultipartBody.Part) : Call<PlantDiseaseResponse>
 
   //  fun soilType(@Header("Content-Type")fileType:String,@Part Image: MultipartBody.Part) : Call<SoilTypeResponse>
 
@@ -58,7 +58,7 @@ val client = OkHttpClient().newBuilder()
 
 val retrofit = Retrofit.Builder()
    // .baseUrl("https://coffee-shop2022.herokuapp.com/")
-    .baseUrl("https://7453-156-206-22-181.ngrok-free.app/")
+    .baseUrl("https://8e2c-197-41-188-223.ngrok-free.app/")
     .client(client)
     .addConverterFactory(GsonConverterFactory.create())
     .build()

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="soilQuality"
+            type="com.example.agriwise.ui.activity.SoilQualityActivity" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.activity.SoilQualityActivity">
+
+        <ImageView
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/path_1903"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/Soil_suitability_for_cultivation"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:gravity="center"
+            android:paddingHorizontal="30dp"
+            android:text="@string/soil_suitability_content"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <ScrollView
+            android:id="@+id/progress_flow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/recommendButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintTop_toBottomOf="@id/top_bar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="22dp"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/ec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="EC %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                    <EditText
+                        android:id="@+id/oc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="OC %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/p_ratio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="P %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                    <EditText
+                        android:id="@+id/k_ratio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="K %   "
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/n_ratio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="N %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                    <EditText
+                        android:id="@+id/ph_ratio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="PH %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="S %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                    <EditText
+                        android:id="@+id/zn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="ZN %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/fe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="FE %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                    <EditText
+                        android:id="@+id/cu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="CU %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/mn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="MN %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                    <EditText
+                        android:id="@+id/b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:background="@drawable/edit_text"
+                        android:fontFamily="@font/roboto"
+                        android:hint="B %"
+                        android:layout_weight="1"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:padding="15dp"
+                        android:textColorHint="@color/hint"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/recommendButton"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/arial"
+            android:onClick="@{soilQuality::onClick}"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/progress_flow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

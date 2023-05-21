@@ -32,13 +32,17 @@ class SoilFertilizerViewModel : ViewModel() {
     val soilFertilizer: LiveData<SoilFertilizerResponse?>
         get() = _soilFertilizer
 
+    private val _soilQuality = MutableLiveData<SoilQualityResponse?>()
+    val soilQuality: LiveData<SoilQualityResponse?>
+        get() = _soilQuality
+
 
     private val _soilType = MutableLiveData<SoilTypeResponse?>()
     val soilType: LiveData<SoilTypeResponse?>
         get() = _soilType
 
-    private val _plantDisease = MutableLiveData<SoilTypeResponse?>()
-    val plantDisease: LiveData<SoilTypeResponse?>
+    private val _plantDisease = MutableLiveData<PlantDiseaseResponse?>()
+    val plantDisease: LiveData<PlantDiseaseResponse?>
         get() = _plantDisease
 
     init {
@@ -47,10 +51,10 @@ class SoilFertilizerViewModel : ViewModel() {
 
     fun getPlantDisease(file: MultipartBody.Part) {
         viewModelScope.launch {
-            service.plantDisease(Image = file ).enqueue(object : Callback<SoilTypeResponse> {
+            service.plantDisease(Image = file ).enqueue(object : Callback<PlantDiseaseResponse> {
                 override fun onResponse(
-                    call: Call<SoilTypeResponse>,
-                    response: Response<SoilTypeResponse>,
+                    call: Call<PlantDiseaseResponse>,
+                    response: Response<PlantDiseaseResponse>,
                 ) {
                     if (response.isSuccessful){
                         _plantDisease.value = response.body()
@@ -61,7 +65,7 @@ class SoilFertilizerViewModel : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<SoilTypeResponse>, t: Throwable) {
+                override fun onFailure(call: Call<PlantDiseaseResponse>, t: Throwable) {
                     Log.e("error", t.localizedMessage as String)
                 }
             })
@@ -136,6 +140,31 @@ class SoilFertilizerViewModel : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<SoilFertilizerResponse>, t: Throwable) {
+                    Log.e("error", t.localizedMessage as String)
+                }
+            })
+        }
+
+    }
+
+
+
+    fun getSoilQuality(soilQualityData: SoilQualityData) {
+        viewModelScope.launch {
+            service.soilQuality(soilQualityData).enqueue(object : Callback<SoilQualityResponse> {
+                override fun onResponse(
+                    call: Call<SoilQualityResponse>,
+                    response: Response<SoilQualityResponse>,
+                ) {
+                    if (response.isSuccessful){
+                        _soilQuality.value = response.body()
+                    } else {
+                        _soilQuality.value = null
+                    }
+
+                }
+
+                override fun onFailure(call: Call<SoilQualityResponse>, t: Throwable) {
                     Log.e("error", t.localizedMessage as String)
                 }
             })

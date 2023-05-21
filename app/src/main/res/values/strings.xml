@@ -38,10 +38,10 @@
     <string name="crops_we_recommend">Crops we Recommend</string>
     <string name="soil_fertilizer">Soil fertilizer</string>
     <string name="soil_fertilizer_content">We detect your crop and suggest appropriate fertilizers by identifying your location, soil type, air temperature around you, and the cultivated crop.</string>
-    <string name="my_crop_safety">Crop safety</string>
+    <string name="my_crop_safety">Plant Disease</string>
     <string name="my_crop_future">Crop future</string>
     <string name="Soil_suitability_for_cultivation">Soil suitability for cultivation</string>
-    <string name="crop_safety_content">Upload a picture of your crop to help you identify the type of disease and suggest a treatment for it</string>
+    <string name="crop_safety_content">Upload a picture of your plant to help you identify the type of disease</string>
     <string name="crop_future_content">We display information about your cultivated crop, common diseases and methods of treatment</string>
     <string name="soil_suitability_content">We help you judge whether the soil is suitable for cultivation or not by analyzing it</string>
     <string name="soil_classification">Soil classification</string>

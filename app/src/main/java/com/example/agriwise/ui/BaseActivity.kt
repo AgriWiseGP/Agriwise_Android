@@ -11,12 +11,40 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import com.example.agriwise.databinding.DialogLoadingBinding
+import com.example.agriwise.databinding.DialogStatusBinding
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 open class BaseActivity: AppCompatActivity() {
+    lateinit var dialogStatusBinding: DialogStatusBinding
+    private lateinit var statusAlertDialog: AlertDialog
+
+    fun createResponseDialog(title:String,resultMsg:String,apiCallback: (() -> Unit)?){
+        val builder = AlertDialog.Builder(this)
+        dialogStatusBinding = DialogStatusBinding.inflate(layoutInflater)
+        builder.setCancelable(false)
+        dialogStatusBinding.titleTextView.text = title
+        dialogStatusBinding.messageTextView.text =resultMsg
+        dialogStatusBinding.closeButton.setOnClickListener {
+            statusAlertDialog.dismiss()
+            finish()
+
+        }
+
+        dialogStatusBinding.tryAgain.setOnClickListener {
+            statusAlertDialog.dismiss()
+            apiCallback?.invoke()
+
+
+        }
+
+        builder.setView(dialogStatusBinding.root)
+        statusAlertDialog = builder.create()
+        statusAlertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        statusAlertDialog.show()
+    }
     fun showLoading() {
         if (loadingDialog == null || loadingDialog?.isShowing == false) {
             hideLoading()

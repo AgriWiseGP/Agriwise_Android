@@ -51,8 +51,8 @@ class Login_Register_ViewModel : BaseViewModel() {
                     } else {
                         // handle 404 error
                         val errorMessageJson = response.errorBody()?.string()
-                        val errorMessage = JSONObject(errorMessageJson).getString("detail")
-                        login.value = LoginResponse("", "", errorMessage)
+                      //  val errorMessage = JSONObject(errorMessageJson).getString("detail")
+                        login.value = LoginResponse("", "", errorMessageJson?:"")
                     }
                 }
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {

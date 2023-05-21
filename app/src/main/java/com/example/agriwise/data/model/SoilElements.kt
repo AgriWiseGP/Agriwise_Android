@@ -3,11 +3,12 @@ package com.example.agriwise.data.model
 import com.google.gson.annotations.SerializedName
 
 
-data class SoilQualityData (
+data class SoilElements (
 
-    @SerializedName("n"  ) var n  : Double?    = null,
+    @SerializedName("id" ) var id : Int?    = null,
+    @SerializedName("n"  ) var n  : Int?    = null,
     @SerializedName("p"  ) var p  : Double? = null,
-    @SerializedName("k"  ) var k  : Double?    = null,
+    @SerializedName("k"  ) var k  : Int?    = null,
     @SerializedName("ph" ) var ph : Double? = null,
     @SerializedName("ec" ) var ec : Double? = null,
     @SerializedName("oc" ) var oc : Double? = null,

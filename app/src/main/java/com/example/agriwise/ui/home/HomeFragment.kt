@@ -81,9 +81,9 @@ private var _binding: FragmentHomeBinding? = null
               0-> startActivity(Intent(requireActivity(),CropSafetyActivity::class.java)) // plant disease
               1-> startActivity(Intent(requireActivity(),CropRecommendationActivity::class.java))
               2-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java))
-              3-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java)) // soil suitability // quality
+              3-> startActivity(Intent(requireActivity(),SoilQualityActivity::class.java)) // soil suitability // quality
             //  4-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java)) // crop future
-              5-> startActivity(Intent(requireActivity(),SoilClassificationActivity::class.java))
+              4-> startActivity(Intent(requireActivity(),SoilClassificationActivity::class.java))
           }
 
       }
@@ -119,7 +119,6 @@ private var _binding: FragmentHomeBinding? = null
           )
       } else {
           // Get the user's location
-          showLoading()
           getLocation()
 
       }

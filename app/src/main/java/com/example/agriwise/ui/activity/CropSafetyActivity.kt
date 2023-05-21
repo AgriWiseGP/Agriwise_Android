@@ -19,6 +19,7 @@ import com.example.agriwise.data.model.SoilFertilizerData
 import com.example.agriwise.data.model.WeatherConditions
 import com.example.agriwise.databinding.ActivityRecommendedCropsBinding
 import com.example.agriwise.databinding.BottomSheetImageBinding
+import com.example.agriwise.databinding.DialogStatusBinding
 import com.example.agriwise.ui.BaseActivity
 import com.example.agriwise.ui.viewmodel.SoilFertilizerViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -49,19 +50,7 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
         viewModel.plantDisease.observe(this) {
             // response here
             hideLoading()
-            val builder = AlertDialog.Builder(this)
-            builder
-                .setTitle("Result :${it?.soilType}")
-                .setPositiveButton("Try another") { dialog, which ->
-                    dialog.dismiss()
-                    bottomSheetImageDialog.show()
-                }
-                .setNegativeButton("Go Back"){ dialog, which ->
-                    dialog.dismiss()
-                    finish()
-                }
-                .setCancelable(false)
-                .show()
+            createResponseDialog("Success",it?.disease?:"Unable to get result",{bottomSheetImageDialog.show()})
         }
 
     }
@@ -81,7 +70,7 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
 
             val part = getMultipartForFile(uri!!)
             showLoading()
-            viewModel.getSoilType( file = part)
+            viewModel.getPlantDisease( file = part)
             // send the multipartBodyPart to your server
 
 
@@ -96,7 +85,7 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
             uri = it
             val part = getMultipartForFile(uri!!)
             showLoading()
-            viewModel.getSoilType( file = part)
+            viewModel.getPlantDisease( file = part)
             // send the multipartBodyPart to your server
 
         }
