@@ -34,11 +34,11 @@ private var _binding: FragmentHomeBinding? = null
     val root: View = binding.root
       val adapter = FeaturesAdapter {
           when(it){
-              0-> startActivity(Intent(requireActivity(),CropSafetyActivity::class.java))
+              0-> startActivity(Intent(requireActivity(),CropSafetyActivity::class.java)) // plant disease
               1-> startActivity(Intent(requireActivity(),CropRecommendationActivity::class.java))
               2-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java))
-              3-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java)) // soil suitability
-              4-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java)) // crop future
+              3-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java)) // soil suitability // quality
+            //  4-> startActivity(Intent(requireActivity(),SoilFertilizerActivity::class.java)) // crop future
               5-> startActivity(Intent(requireActivity(),SoilClassificationActivity::class.java))
           }
 
@@ -49,11 +49,11 @@ private var _binding: FragmentHomeBinding? = null
             FeaturesData(R.drawable.fertilizer__4_,getString(R.string.soil_fertilizer),getString(R.string.soil_fertilizer_content)),
 
             FeaturesData(R.drawable.plant__1_,getString(R.string.Soil_suitability_for_cultivation),getString(R.string.soil_suitability_content)),
-            FeaturesData(R.drawable.pest__1_,getString(R.string.my_crop_future),getString(R.string.crop_future_content)),
+          //  FeaturesData(R.drawable.pest__1_,getString(R.string.my_crop_future),getString(R.string.crop_future_content)),
             FeaturesData(R.drawable.camera__1_,getString(R.string.soil_classification),getString(R.string.soil_classification_content)),
-            FeaturesData(R.drawable.greenhouse__4_,getString(R.string.nearest_plantation),getString(R.string.nearest_planting)),
-            FeaturesData(R.drawable.laboratory__1_,getString(R.string.nearest_laboratory),getString(R.string.nearest_laboratory_content)),
-            FeaturesData(R.drawable.fertilizer__3_,getString(R.string.purchase_of_fertilizers_and_treatment),getString(R.string.buy_medicine_content))
+        //    FeaturesData(R.drawable.greenhouse__4_,getString(R.string.nearest_plantation),getString(R.string.nearest_planting)),
+        //    FeaturesData(R.drawable.laboratory__1_,getString(R.string.nearest_laboratory),getString(R.string.nearest_laboratory_content)),
+        //    FeaturesData(R.drawable.fertilizer__3_,getString(R.string.purchase_of_fertilizers_and_treatment),getString(R.string.buy_medicine_content))
 
 
             ))

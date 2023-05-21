@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.canhub.cropper.CropImageContract
@@ -45,9 +46,22 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
         initBottomSheet()
        binding.backBtn.setOnClickListener { onBackPressed() }
 
-        viewModel.soilType.observe(this) {
-           // response here
-            Toast.makeText(this, "Response ${it?.soilType}", Toast.LENGTH_SHORT).show()
+        viewModel.plantDisease.observe(this) {
+            // response here
+            hideLoading()
+            val builder = AlertDialog.Builder(this)
+            builder
+                .setTitle("Result :${it?.soilType}")
+                .setPositiveButton("Try another") { dialog, which ->
+                    dialog.dismiss()
+                    bottomSheetImageDialog.show()
+                }
+                .setNegativeButton("Go Back"){ dialog, which ->
+                    dialog.dismiss()
+                    finish()
+                }
+                .setCancelable(false)
+                .show()
         }
 
     }
@@ -61,12 +75,12 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
     }
     private var takePicture = registerForActivityResult(ActivityResultContracts.TakePicture()) {
         if (it) {
-          /*  takeCropPicture.launch(
-                options(uri)
-            ) */
+            /*  takeCropPicture.launch(
+                  options(uri)
+              ) */
 
             val part = getMultipartForFile(uri!!)
-            val contentType = part.body.contentType()?.toString()
+            showLoading()
             viewModel.getSoilType( file = part)
             // send the multipartBodyPart to your server
 
@@ -76,12 +90,12 @@ class CropSafetyActivity : BaseActivity(), View.OnClickListener {
 
     private var getPicture = registerForActivityResult(ActivityResultContracts.GetContent()) {
         if (it != null) {
-           /* takeCropPicture.launch(
-                options(it)
-            ) */
+            /* takeCropPicture.launch(
+                 options(it)
+             ) */
             uri = it
             val part = getMultipartForFile(uri!!)
-            val contentType = part.body.contentType()?.toString()
+            showLoading()
             viewModel.getSoilType( file = part)
             // send the multipartBodyPart to your server
 

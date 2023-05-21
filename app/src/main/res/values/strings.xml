@@ -57,6 +57,9 @@
     <string name="have_an_account_login">Have an account ? Login</string>
     <string name="username">Username</string>
     <string name="password_recovery">Password Recovery</string>
-
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 
 </resources>

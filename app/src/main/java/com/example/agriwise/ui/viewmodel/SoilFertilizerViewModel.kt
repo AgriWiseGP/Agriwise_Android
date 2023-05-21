@@ -37,7 +37,35 @@ class SoilFertilizerViewModel : ViewModel() {
     val soilType: LiveData<SoilTypeResponse?>
         get() = _soilType
 
+    private val _plantDisease = MutableLiveData<SoilTypeResponse?>()
+    val plantDisease: LiveData<SoilTypeResponse?>
+        get() = _plantDisease
+
     init {
+
+    }
+
+    fun getPlantDisease(file: MultipartBody.Part) {
+        viewModelScope.launch {
+            service.plantDisease(Image = file ).enqueue(object : Callback<SoilTypeResponse> {
+                override fun onResponse(
+                    call: Call<SoilTypeResponse>,
+                    response: Response<SoilTypeResponse>,
+                ) {
+                    if (response.isSuccessful){
+                        _plantDisease.value = response.body()
+                    }else  {
+                        // handle 404 error
+                        val errorMessageJson = response.errorBody()?.string()
+                        _plantDisease.value = null
+                    }
+                }
+
+                override fun onFailure(call: Call<SoilTypeResponse>, t: Throwable) {
+                    Log.e("error", t.localizedMessage as String)
+                }
+            })
+        }
 
     }
 

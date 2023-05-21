@@ -21,6 +21,9 @@ interface AgriWiseApi{
     @POST("crop_recommendation/crop/")
     fun cropRecommendation(@Body cropRecommendationData: CropRecommendationData) : Call<CropRecommendationResponse>
 
+    @POST("soil-quality/soil/")
+    fun soilQuality(@Body soilQualityData: SoilQualityData) : Call<CropRecommendationResponse>
+
 
     @POST("auth/users/")
     fun register(@Body body: RegisterBody) : Call<Unit>
@@ -32,9 +35,16 @@ interface AgriWiseApi{
     @POST("soil-type/predict/")
     @Multipart
     fun soilType(@Part Image: MultipartBody.Part) : Call<SoilTypeResponse>
+
+
+    @POST("plant-diseases/predict/")
+    @Multipart
+    fun plantDisease(@Part Image: MultipartBody.Part) : Call<SoilTypeResponse>
+
   //  fun soilType(@Header("Content-Type")fileType:String,@Part Image: MultipartBody.Part) : Call<SoilTypeResponse>
 
-
+    @GET("profiles/me")
+    fun getProfile() : Call<Unit>
 }
 
 val httpLogging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)

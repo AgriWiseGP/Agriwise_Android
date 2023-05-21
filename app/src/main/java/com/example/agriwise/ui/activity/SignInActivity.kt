@@ -38,7 +38,7 @@ class SignInActivity : BaseActivity() , View.OnFocusChangeListener {
         }
         binding.loginBtn.setOnClickListener {
 
-          //  startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this,MainActivity::class.java))
 
             val email = binding.emailEditText.text.toString()
             val password = binding.passEditText.text.toString()
