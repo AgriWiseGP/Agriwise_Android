@@ -77,7 +77,7 @@
                     android:paddingTop="5dp"
                     android:layout_gravity="end"
                     android:textColor="@color/black"
-                    android:text="20&#176;"/>
+                    android:text="&#176;"/>
 
 
             </LinearLayout>
