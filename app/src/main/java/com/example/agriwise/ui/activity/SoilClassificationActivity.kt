@@ -51,19 +51,13 @@ class SoilClassificationActivity : BaseActivity(), View.OnClickListener {
         viewModel.soilType.observe(this) {
             // response here
             hideLoading()
-            val builder = AlertDialog.Builder(this)
-            builder
-                .setTitle("Soil Type is :${it?.soilType}")
-                .setPositiveButton("Try another") { dialog, which ->
-                    dialog.dismiss()
-                    bottomSheetImageDialog.show()
-                }
-                .setNegativeButton("Go Back"){ dialog, which ->
-                    dialog.dismiss()
-                    finish()
-                }
-                .setCancelable(false)
-                .show()
+            if (it!=null){
+                createResponseDialog("Success",it.soilType?:"Unable to get result",{bottomSheetImageDialog.show()})
+            } else {
+                Toast.makeText(this, "Something went wrong. Please try again later", Toast.LENGTH_LONG).show()
+
+            }
+
         }
 
     }

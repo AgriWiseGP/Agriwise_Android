@@ -71,19 +71,8 @@ class SoilFertilizerActivity : BaseActivity(), View.OnClickListener {
             // response here
             hideLoading()
             if (it !=null){
-                val builder = androidx.appcompat.app.AlertDialog.Builder(this)
-                builder
-                    .setTitle("Best Soil Fertilizer : ${it.target}")
-                    .setPositiveButton("Try another") { dialog, which ->
-                        dialog.dismiss()
-                        bottomSheetImageDialog.show()
-                    }
-                    .setNegativeButton("Go Back"){ dialog, which ->
-                        dialog.dismiss()
-                        finish()
-                    }
-                    .setCancelable(false)
-                    .show()
+                createResponseDialog("Best Soil Fertilizer",it.target?:"Unable to get result",{bottomSheetImageDialog.show()})
+
             } else {
                 Toast.makeText(this, "Something went wrong. Please try again later", Toast.LENGTH_LONG).show()
             }
