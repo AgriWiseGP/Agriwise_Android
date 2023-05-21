@@ -61,11 +61,22 @@ Here are some screenshots from the Agriwise app:
   Register Screen
 </p>
 
-
 <p align="center">
-  <img src="https://github.com/AgriWiseGP/Agriwise_Android/assets/76598011/0c79de77-ce5e-4f2a-ac87-d0112a73ac76" alt="Home Screen">
+  <img src="https://github.com/AgriWiseGP/Agriwise_Android/assets/76598011/303b3542-fb6b-4a79-b314-cfdf6efb3484" alt="Home Screen">
   <br>
   Home Screen Showing all AI model Features
+</p>
+
+<p align="center">
+  <img src="https://github.com/AgriWiseGP/Agriwise_Android/assets/76598011/932063d4-2e19-48c7-b7ae-8d9e004357fd" alt="Profile Screen">
+  <br>
+  Profile Screen
+</p>
+
+<p align="center">
+  <img src="https://github.com/AgriWiseGP/Agriwise_Android/assets/76598011/3d9f47c5-b38b-43c8-8e81-d4c8c92c8744" alt="Notifications Screen">
+  <br>
+  Notifications Screen
 </p>
 
 
