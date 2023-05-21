@@ -67,6 +67,18 @@ Here are some screenshots from the Agriwise app:
   Home Screen Showing all AI model Features
 </p>
 
+<p align="center">
+  <img src="https://github.com/AgriWiseGP/Agriwise_Android/assets/76598011/932063d4-2e19-48c7-b7ae-8d9e004357fd" alt="Profile Screen">
+  <br>
+  Profile Screen
+</p>
+
+<p align="center">
+  <img src="https://github.com/AgriWiseGP/Agriwise_Android/assets/76598011/3d9f47c5-b38b-43c8-8e81-d4c8c92c8744" alt="Notifications Screen">
+  <br>
+  Notifications Screen
+</p>
+
 
 <p align="center">
   <img src="https://github.com/AgriWiseGP/Agriwise_Android/assets/76598011/d7fcb3d6-576d-4345-9163-6f66384c4a66" alt="Crop Safety Screen">
