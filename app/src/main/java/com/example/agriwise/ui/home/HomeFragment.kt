@@ -75,6 +75,7 @@ private var _binding: FragmentHomeBinding? = null
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
     _binding = FragmentHomeBinding.inflate(inflater, container, false)
+      showLoading()
     val root: View = binding.root
       val adapter = FeaturesAdapter {
           when(it){

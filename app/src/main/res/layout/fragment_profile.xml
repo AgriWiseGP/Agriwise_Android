@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="cropSafety"
-            type="com.example.agriwise.ui.activity.SoilClassificationActivity" />
 
     </data>
 
@@ -76,7 +73,7 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="20sp"
-                android:text="Julyana Michael" />
+                tools:text="Julyana Michael" />
 
 
             <TextView
@@ -89,7 +86,7 @@
                 android:id="@+id/userEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="JulyanaMichael@gmail.com"
+                tools:text="JulyanaMichael@gmail.com"
                 android:inputType="textEmailAddress" />
 
             <!-- Phone number -->
@@ -103,7 +100,7 @@
                 android:id="@+id/userPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="010151547454"
+                tools:text="010151547454"
                 android:inputType="phone" />
 
             <!-- Gender -->
@@ -111,6 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:visibility="gone"
                 android:text="Gender" />
 
             <Spinner
@@ -118,6 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:entries="@array/gender_array" />
 
             <!-- Date of Birth -->
@@ -131,7 +130,7 @@
                 android:id="@+id/userDateOfBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="25/5/1960"
+                tools:text="25/5/1960"
                 android:inputType="date" />
 
 
@@ -139,21 +138,20 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/selectImageButton"
+            android:id="@+id/updateProfile"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginTop="55dp"
             android:background="@drawable/button"
             android:fontFamily="@font/arial"
-            android:onClick="@{cropSafety::onClick}"
             android:text="Update Profile"
             android:textSize="@dimen/_14sdp"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progress_flow"
-            tools:text="Upload Picture" />
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,7 +44,10 @@ interface AgriWiseApi{
   //  fun soilType(@Header("Content-Type")fileType:String,@Part Image: MultipartBody.Part) : Call<SoilTypeResponse>
 
     @GET("profiles/me")
-    fun getProfile() : Call<Unit>
+    fun getProfile() : Call<User>
+
+    @PUT("profiles/me")
+    fun updateProfile(@Body user: User) : Call<User>
 }
 
 val httpLogging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -58,7 +61,7 @@ val client = OkHttpClient().newBuilder()
 
 val retrofit = Retrofit.Builder()
    // .baseUrl("https://coffee-shop2022.herokuapp.com/")
-    .baseUrl("https://8e2c-197-41-188-223.ngrok-free.app/")
+    .baseUrl("https://d8e1-156-206-19-38.ngrok-free.app/")
     .client(client)
     .addConverterFactory(GsonConverterFactory.create())
     .build()

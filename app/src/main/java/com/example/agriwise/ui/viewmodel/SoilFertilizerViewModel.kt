@@ -23,6 +23,11 @@ import retrofit2.Response
 class SoilFertilizerViewModel : ViewModel() {
 
 
+    private val _userProfile = MutableLiveData<User?>()
+    val userProfile: LiveData<User?>
+        get() = _userProfile
+
+
     private val _cropRecommendation = MutableLiveData<CropRecommendationResponse?>()
     val cropRecommendation: LiveData<CropRecommendationResponse?>
         get() = _cropRecommendation
@@ -46,6 +51,54 @@ class SoilFertilizerViewModel : ViewModel() {
         get() = _plantDisease
 
     init {
+
+    }
+
+    fun updateProfile(user: User) {
+        viewModelScope.launch {
+            service.updateProfile(user).enqueue(object : Callback<User> {
+                override fun onResponse(
+                    call: Call<User>,
+                    response: Response<User>,
+                ) {
+                    if (response.isSuccessful){
+                        _userProfile.value = response.body()
+                    }else  {
+                        // handle 404 error
+                        val errorMessageJson = response.errorBody()?.string()
+                        _userProfile.value = null
+                    }
+                }
+
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    Log.e("error", t.localizedMessage as String)
+                }
+            })
+        }
+
+    }
+
+    fun getProfile() {
+        viewModelScope.launch {
+            service.getProfile().enqueue(object : Callback<User> {
+                override fun onResponse(
+                    call: Call<User>,
+                    response: Response<User>,
+                ) {
+                    if (response.isSuccessful){
+                        _userProfile.value = response.body()
+                    }else  {
+                        // handle 404 error
+                        val errorMessageJson = response.errorBody()?.string()
+                        _userProfile.value = null
+                    }
+                }
+
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    Log.e("error", t.localizedMessage as String)
+                }
+            })
+        }
 
     }
 
